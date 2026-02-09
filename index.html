@@ -140,6 +140,7 @@ body {
   .swatch b { color: var(--text); }
   .tablewrap {
     overflow: auto;
+    position: relative;
     border-radius: 14px;
     border: 1px solid var(--border);
     background: var(--panel);
@@ -231,10 +232,16 @@ table { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 90
   th.sticky-left, td.sticky-left {
     box-shadow: 1px 0 0 var(--border);
   }
+  /* Sticky header row (keeps column labels visible while scrolling) */
+  thead th{
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--theadBg);
+  }
+  thead th.sticky-left{ z-index: 7; }
 
   /* Column resize handle */
-  thead th { position: sticky; }
-  thead th.resizable { position: sticky; }
   .col-resizer {
     position: absolute;
     top: 0;
