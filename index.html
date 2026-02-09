@@ -20,1168 +20,926 @@
     --btn-fg: #111827;
     --btn-bg-hover: #f3f4f6;
 
-    --chip-bg: #eef2ff;
-    --chip-fg: #3730a3;
-
-    --bad: #dc2626;
-    --ok: #f59e0b;
-    --good: #16a34a;
-    --great: #0ea5e9;
-
-    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    --good3: rgba(16, 185, 129, 0.18);
+    --good2: rgba(59, 130, 246, 0.14);
+    --good1: rgba(234, 179, 8, 0.16);
+    --bad: rgba(239, 68, 68, 0.16);
+    --none: rgba(148, 163, 184, 0.12);
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0b1220;
-      --panel: #0f172a;
-      --panel2: #111c33;
-      --text: #e5e7eb;
-      --muted: #94a3b8;
-      --border: #1f2a44;
-      --accent: #38bdf8;
-      --theadBg: rgba(15,23,42,0.92);
+  html[data-theme="dark"] {
+    --bg: #0b0c10;
+    --panel: #111319;
+    --panel2: #0f1116;
+    --text: #e8e8ea;
+    --muted: #b6b7bc;
+    --border: #252836;
+    --accent: #7dd3fc;
+    --theadBg: rgba(17,19,25,0.96);
 
-      --btn-bg: #0f172a;
-      --btn-fg: #e5e7eb;
-      --btn-bg-hover: #111c33;
+    --btn-bg: #1f2430;
+    --btn-fg: #e8e8ea;
+    --btn-bg-hover: #2a3140;
 
-      --chip-bg: rgba(56,189,248,0.12);
-      --chip-fg: #7dd3fc;
-
-      --shadow: 0 10px 30px rgba(0,0,0,0.35);
-    }
+    --good3: rgba(16, 185, 129, 0.20);
+    --good2: rgba(59, 130, 246, 0.18);
+    --good1: rgba(234, 179, 8, 0.18);
+    --bad: rgba(239, 68, 68, 0.18);
+    --none: rgba(148, 163, 184, 0.10);
   }
-
-  body {
+body {
     margin: 0;
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     background: var(--bg);
     color: var(--text);
   }
-
-  .container {
-    max-width: 1300px;
-    margin: 24px auto;
-    padding: 0 16px 36px;
-  }
-
   header {
-    display:flex;
-    gap:16px;
-    align-items:flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
+    padding: 18px 18px 10px 18px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(125,211,252,0.08), rgba(0,0,0,0));
   }
-
-  .titleblock h1 {
-    margin:0;
-    font-size: 22px;
+  header h1 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
     letter-spacing: 0.2px;
   }
-
-  .titleblock p {
-    margin: 6px 0 0;
+  header .sub {
+    margin-top: 6px;
     color: var(--muted);
     font-size: 13px;
     line-height: 1.35;
   }
-
-  .panel {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-  }
-
-  .controls {
-    padding: 14px 14px 10px;
-    border-bottom: 1px solid var(--border);
-    background: linear-gradient(180deg, var(--panel), var(--panel2));
-  }
-
-  .row {
-    display:flex;
-    gap:12px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .row + .row { margin-top: 10px; }
-
-  .field {
-    display:flex;
+  .wrap {
+    display: flex;
     flex-direction: column;
-    gap:6px;
-    min-width: 220px;
+    gap: 12px;
+    padding: 12px;
   }
-
-  label {
-    font-size: 12px;
-    color: var(--muted);
-  }
-
-  input[type="search"], select {
-    appearance: none;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 10px 12px;
-    font-size: 14px;
+.panel {
     background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+  .panel h2 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+  }
+  .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+  label { display: block; font-size: 12.5px; color: var(--muted); margin-bottom: 6px; }
+  input[type="text"], select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--panel2);
     color: var(--text);
     outline: none;
   }
-
-  input[type="search"]:focus, select:focus {
-    border-color: rgba(56,189,248,0.6);
-    box-shadow: 0 0 0 4px rgba(56,189,248,0.15);
-  }
-
-  .btn {
+  select[multiple] { min-height: 120px; }
+  .tiny { font-size: 12px; color: var(--muted); }
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+  button {
+    padding: 9px 10px;
+    border-radius: 10px;
     border: 1px solid var(--border);
     background: var(--btn-bg);
     color: var(--btn-fg);
-    border-radius: 12px;
-    padding: 10px 12px;
-    font-size: 13px;
     cursor: pointer;
-    display:flex;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  button:hover { border-color: rgba(125,211,252,0.6); }
+  .pill {
+    display: inline-flex;
     align-items: center;
-    gap:8px;
-    user-select: none;
-  }
-
-  .btn:hover { background: var(--btn-bg-hover); }
-
-  .btn.primary {
-    border-color: rgba(56,189,248,0.45);
-    background: rgba(56,189,248,0.10);
-  }
-
-  .chips {
-    display:flex;
-    flex-wrap: wrap;
-    gap:6px;
-  }
-
-  .chip {
-    background: var(--chip-bg);
-    color: var(--chip-fg);
-    border: 1px solid rgba(99,102,241,0.15);
+    gap: 6px;
     padding: 6px 10px;
     border-radius: 999px;
-    font-size: 12px;
-    display:flex;
-    align-items:center;
-    gap:8px;
+    border: 1px solid var(--border);
+    background: rgba(125,211,252,0.06);
+    color: var(--text);
+    font-size: 12.5px;
+    margin: 6px 6px 0 0;
   }
-
-  .chip button {
-    border:none;
-    background: transparent;
-    color: inherit;
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 1;
-    padding: 0;
-  }
-
-  .meta {
-    padding: 10px 14px 12px;
-    display:flex;
-    justify-content: space-between;
-    gap:12px;
-    flex-wrap: wrap;
-    align-items:center;
-    border-bottom: 1px solid var(--border);
-    background: var(--panel);
-  }
-
-  .meta .note {
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.35;
-  }
-
-  .legend {
-    display:flex;
-    gap:10px;
-    flex-wrap: wrap;
-    align-items:center;
-    font-size: 12px;
-    color: var(--muted);
-  }
-
+  .legend { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
   .swatch {
-    width: 12px; height: 12px;
-    border-radius: 4px;
-    border: 1px solid rgba(0,0,0,0.08);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    background: rgba(255,255,255,0.02);
   }
-
-  .swatch.bad { background: rgba(220,38,38,0.18); border-color: rgba(220,38,38,0.35); }
-  .swatch.ok { background: rgba(245,158,11,0.18); border-color: rgba(245,158,11,0.35); }
-  .swatch.good { background: rgba(22,163,74,0.18); border-color: rgba(22,163,74,0.35); }
-  .swatch.great { background: rgba(14,165,233,0.18); border-color: rgba(14,165,233,0.35); }
-  .swatch.na { background: rgba(148,163,184,0.18); border-color: rgba(148,163,184,0.35); }
-
-  .xscroll {
-    border:1px solid var(--border);
+  .swatch b { color: var(--text); }
+  .tablewrap {
+    overflow: auto;
     border-radius: 14px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    height: 14px;
+    border: 1px solid var(--border);
     background: var(--panel);
   }
-  #topXScroll { margin-bottom: 8px; }
-  #topXScrollInner { height: 1px; }
 
-  .tablewrap {
-    border:1px solid var(--border);
-    border-radius: 14px;
-    overflow:auto;
-    max-height: 62vh;
-    background: white;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .tablewrap { background: #0b1220; }
-  }
-
-  table {
-    border-collapse: separate;
-    border-spacing: 0;
-    width: max-content;
-    min-width: 100%;
-    table-layout: fixed;
-  }
-
+/* Top horizontal scrollbar (synced with main table) */
+.hscroll-top{
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 14px;
+  margin: 0 0 6px 0;
+  display: none; /* shown only when table overflows */
+}
+.hscroll-inner{ height: 1px; }
+table { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 900px; }
   thead th {
     position: sticky;
     top: 0;
+    z-index: 2;
     background: var(--theadBg);
     backdrop-filter: blur(6px);
-    z-index: 6;
     border-bottom: 1px solid var(--border);
     font-size: 12px;
-    color: var(--muted);
-    text-transform: none;
-    letter-spacing: 0.1px;
+    text-align: left;
     padding: 10px 10px;
     white-space: nowrap;
-    user-select: none;
     cursor: pointer;
   }
-
   tbody td {
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(37,40,54,0.8);
     padding: 9px 10px;
-    font-size: 13px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 12.5px;
+    vertical-align: top;
   }
-
-  tbody tr:hover td {
-    background: rgba(2,132,199,0.06);
+  tbody tr:hover td { background: rgba(125,211,252,0.05); }
+  .meta { white-space: nowrap; }
+  .activity {
+    font-weight: 700;
+    text-align: center;
+    border-left: 1px solid rgba(37,40,54,0.5);
+    border-right: 1px solid rgba(37,40,54,0.5);
   }
+  .a3 { background: var(--good3); }
+  .a2 { background: var(--good2); }
+  .a1 { background: var(--good1); }
+  .a0 { background: var(--bad); }
+  .aN { background: var(--none); color: rgba(232,232,234,0.65); }
+  .topbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .count { color: var(--muted); font-size: 12.5px; }
+  .notice { color: var(--muted); font-size: 12.5px; line-height: 1.35; }
+  .checkrow { display: grid; grid-template-columns: 18px 1fr; align-items: center; gap: 8px; margin: 8px 0 0 0; }
+  .checkrow input { width: 16px; height: 16px; }
+  .radio { display: grid; grid-template-columns: 18px 1fr; align-items: center; gap: 8px; margin: 6px 0 0 0; }
+  .kbd {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 12px;
+    padding: 2px 6px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: rgba(255,255,255,0.03);
+    color: var(--text);
+  }
+  .footer { padding: 0 12px 12px 12px; color: var(--muted); font-size: 12px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
 
-  /* Sticky first columns */
-  .sticky-left-th {
+  .spanAll { grid-column: 1 / -1; }
+
+  /* Sticky left columns (Drug/Route/etc.) */
+  th.sticky-left {
     position: sticky;
     left: 0;
-    z-index: 8;
+    z-index: 6;
     background: var(--theadBg);
   }
-
-  .sticky-left-td {
+  td.sticky-left {
     position: sticky;
     left: 0;
     z-index: 3;
-    background: inherit;
-  }
-
-  /* width hints for base columns */
-  .col-cat { min-width: 120px; }
-  .col-drug { min-width: 170px; }
-  .col-class { min-width: 160px; }
-  .col-route { min-width: 80px; }
-
-  /* score cells */
-  .score {
-    font-weight: 600;
-    text-align: center;
-    border-radius: 10px;
-    padding: 6px 8px;
-    border: 1px solid transparent;
-  }
-
-  .score.bad { color: var(--bad); background: rgba(220,38,38,0.12); border-color: rgba(220,38,38,0.20); }
-  .score.ok { color: var(--ok); background: rgba(245,158,11,0.12); border-color: rgba(245,158,11,0.20); }
-  .score.good { color: var(--good); background: rgba(22,163,74,0.12); border-color: rgba(22,163,74,0.20); }
-  .score.great { color: var(--great); background: rgba(14,165,233,0.12); border-color: rgba(14,165,233,0.20); }
-  .score.na { color: var(--muted); background: rgba(148,163,184,0.12); border-color: rgba(148,163,184,0.20); }
-
-  .footer {
-    padding: 12px 14px 14px;
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.35;
-  }
-
-  /* Modal */
-  .modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.35);
-    display:none;
-    align-items: center;
-    justify-content: center;
-    padding: 18px;
-    z-index: 1000;
-  }
-  .modal.open { display:flex; }
-  .modal-content {
-    width: min(860px, 100%);
-    max-height: 80vh;
-    overflow:auto;
     background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    box-shadow: var(--shadow);
-    padding: 14px;
   }
-  .modal-header {
-    display:flex;
-    justify-content: space-between;
-    align-items:center;
-    gap:10px;
-    padding: 6px 6px 10px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 10px;
-  }
-  .modal-header h2 {
-    margin:0;
-    font-size: 16px;
-  }
-  .modal-grid {
-    display:grid;
-    grid-template-columns: repeat(3, minmax(180px, 1fr));
-    gap: 10px;
-    padding: 6px;
-  }
-  @media (max-width: 720px) {
-    .modal-grid { grid-template-columns: 1fr; }
+  th.sticky-left, td.sticky-left {
+    box-shadow: 1px 0 0 var(--border);
   }
 
-  .check {
-    display:flex;
-    gap:10px;
-    align-items:flex-start;
-    padding: 10px 10px;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    background: linear-gradient(180deg, var(--panel), var(--panel2));
-  }
-  .check input { margin-top: 2px; }
-  .check .label {
-    display:flex;
-    flex-direction: column;
-    gap:2px;
-  }
-  .check .label strong {
-    font-size: 13px;
-  }
-  .check .label span {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.25;
-  }
-
-  /* Resizer handle */
+  /* Column resize handle */
+  thead th { position: sticky; }
+  thead th.resizable { position: sticky; }
   .col-resizer {
     position: absolute;
     top: 0;
     right: -2px;
-    width: 6px;
+    width: 8px;
     height: 100%;
     cursor: col-resize;
     user-select: none;
+    touch-action: none;
   }
-  thead th { position: sticky; }
+  .col-resizer::after{
+    content:"";
+    position:absolute;
+    top:0; bottom:0;
+    left:3px;
+    width:2px;
+    background: rgba(0,0,0,0.12);
+  }
+  html[data-theme="dark"] .col-resizer::after{
+    background: rgba(255,255,255,0.18);
+  }
+
+  td.sticky-left { border-right: 1px solid rgba(0,0,0,0); }
+
+
+  header {
+    padding: 18px 18px 10px 18px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(2,132,199,0.10), rgba(0,0,0,0));
+  }
+  .headRow{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .headActions{ display:flex; gap:8px; align-items:center; }
+
 </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="titleblock">
-        <h1>CoAST Interactive Table</h1>
-        <p>Filter antimicrobials by spectrum. Click column headers to sort. Drag the column edge to resize.</p>
+<header>
+  <div class="headRow">
+    <div>
+      <h1>CoAST Interactive – Antimicrobial Activity by Organism</h1>
+      <div class="sub">
+        Offline, self-contained HTML. Filter by <span class="kbd">bug</span>, <span class="kbd">drug</span>, and <span class="kbd">route</span>.
+        Click column headers to sort. Export filtered rows to CSV.
       </div>
-      <div class="row">
-        <button class="btn primary" id="organismBtn" type="button">Choose organisms</button>
-        <button class="btn" id="resetBtn" type="button">Reset</button>
-      </div>
-    </header>
+    </div>
+    <div class="headActions">
+      <button id="themeBtn" type="button" title="Toggle light/dark">Dark mode</button>
+    </div>
+  </div>
+</header>
 
-    <div class="panel">
+<div class="wrap">
+  <aside class="panel" id="filters">
+    <h2>Filters</h2>
+
+    <div class="row">
+      <div>
+        <label for="category">Category</label>
+        <select id="category" multiple>
+          <option value="Antibacterials" selected>Antibacterials</option>
+<option value="Antifungals" selected>Antifungals</option>
+<option value="Antivirals" selected>Antivirals</option>
+        </select>
+        <div class="tiny">Tip: hold <span class="kbd">⌘</span> (Mac) / <span class="kbd">Ctrl</span> (Win) to multi-select.</div>
+      </div>
+
+      <div>
+        <label for="route">Route</label>
+        <select id="route" multiple>
+          <option value="INH" selected>INH</option>
+<option value="INH/PO" selected>INH/PO</option>
+<option value="IV" selected>IV</option>
+<option value="IV/PO" selected>IV/PO</option>
+<option value="PO" selected>PO</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="drugSearch">Drug name contains</label>
+        <input id="drugSearch" type="text" placeholder="e.g., cefepime, vanc, fluconazole"/>
+      </div>
+
+      <div>
+        <label for="drugPick">Drugs (pick list)</label>
+        <select id="drugPick" multiple>
+          <option value="Acyclovir/Valacyclovir">Acyclovir/Valacyclovir</option>
+<option value="Amoxicillin">Amoxicillin</option>
+<option value="Amoxicillin/clavulanate">Amoxicillin/clavulanate</option>
+<option value="Amphotericin B">Amphotericin B</option>
+<option value="Ampicillin">Ampicillin</option>
+<option value="Ampicillin/sulbactam">Ampicillin/sulbactam</option>
+<option value="Azithromycin">Azithromycin</option>
+<option value="Aztreonam">Aztreonam</option>
+<option value="Baloxavir">Baloxavir</option>
+<option value="Caspo/mica/ anidulafungin">Caspo/mica/ anidulafungin</option>
+<option value="Cefazolin">Cefazolin</option>
+<option value="Cefepime">Cefepime</option>
+<option value="Cefotetan/Cefoxitin">Cefotetan/Cefoxitin</option>
+<option value="Ceftaroline">Ceftaroline</option>
+<option value="Ceftazidime">Ceftazidime</option>
+<option value="Ceftazidime/avibactam">Ceftazidime/avibactam</option>
+<option value="Ceftolozane/tazobactam">Ceftolozane/tazobactam</option>
+<option value="Ceftriaxone/Cefotaxime">Ceftriaxone/Cefotaxime</option>
+<option value="Cefuroxime">Cefuroxime</option>
+<option value="Cephalexin">Cephalexin</option>
+<option value="Cidofovir">Cidofovir</option>
+<option value="Ciprofloxacin">Ciprofloxacin</option>
+<option value="Clarithromycin">Clarithromycin</option>
+<option value="Clindamycin">Clindamycin</option>
+<option value="Daptomycin">Daptomycin</option>
+<option value="Dicloxacillin">Dicloxacillin</option>
+<option value="Doxycycline">Doxycycline</option>
+<option value="Ertapenem">Ertapenem</option>
+<option value="Erythromycin">Erythromycin</option>
+<option value="Famciclovir">Famciclovir</option>
+<option value="Fluconazole">Fluconazole</option>
+<option value="Foscarnet">Foscarnet</option>
+<option value="Ganciclovir/Valganciclovir">Ganciclovir/Valganciclovir</option>
+<option value="Gentamicin/tobramycin">Gentamicin/tobramycin</option>
+<option value="Imi/Meropenem">Imi/Meropenem</option>
+<option value="Itraconazole">Itraconazole</option>
+<option value="Letermovir">Letermovir</option>
+<option value="Levofloxacin">Levofloxacin</option>
+<option value="Linezolid">Linezolid</option>
+<option value="Metronidazole">Metronidazole</option>
+<option value="Molnupiravir">Molnupiravir</option>
+<option value="Moxifloxacin">Moxifloxacin</option>
+<option value="Nafcillin">Nafcillin</option>
+<option value="Nirmatrelvir">Nirmatrelvir</option>
+<option value="Oseltamivir">Oseltamivir</option>
+<option value="Penicillin G">Penicillin G</option>
+<option value="Piperacillin/tazobactam">Piperacillin/tazobactam</option>
+<option value="Posa/Isavuconazole">Posa/Isavuconazole</option>
+<option value="Remdesivir">Remdesivir</option>
+<option value="Ribavirin">Ribavirin</option>
+<option value="TMP/SMX">TMP/SMX</option>
+<option value="Tigecycline">Tigecycline</option>
+<option value="Vancomycin/Dalba/Orita">Vancomycin/Dalba/Orita</option>
+<option value="Voriconazole">Voriconazole</option>
+<option value="Zanamivir">Zanamivir</option>
+        </select>
+        <div class="tiny">If you select any drugs here, the table will show only those.</div>
+      </div>
+
+      <div class="spanAll">
+        <label for="organisms">Organisms (“bugs”)</label>
+        <select id="organisms" multiple></select>
+        <div class="checkrow">
+          <input type="checkbox" id="showOnlySelectedOrgs" checked/>
+          <div class="tiny">Show only selected organism columns in the table</div>
+        </div>
+      </div>
+
+      <div class="panel spanAll" style="padding:12px; background: rgba(255,255,255,0.04);">
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <div style="min-width: 190px; flex: 1;">
+            <label for="minActivity">Minimum activity required (for organism filter)</label>
+            <select id="minActivity">
+              <option value="1" selected>Any activity (+ / ++ / +++ / syn)</option>
+              <option value="2">Moderate or better (++ / +++ / syn)</option>
+              <option value="3">Strong only (+++)</option>
+            </select>
+          </div>
+
+          <div style="min-width: 170px; flex: 1;">
+            <label>Match across selected organisms</label>
+            <div class="radio"><input type="radio" name="orgMatch" value="any" id="orgAny" checked/><div class="tiny"><b>ANY</b> selected organism passes</div></div>
+            <div class="radio"><input type="radio" name="orgMatch" value="all" id="orgAll"/><div class="tiny"><b>ALL</b> selected organisms must pass</div></div>
+          </div>
+        </div>
+        <div class="notice" style="margin-top:10px;">
+          Filtering by organisms is blunt by design: it uses the symbols in the sheet (not MICs, not local epidemiology, not site-specific PK/PD).
+        </div>
+      </div>
+
       <div class="controls">
-        <div class="row">
-          <div class="field" style="min-width:260px;">
-            <label for="q">Search (drug/class/category)</label>
-            <input id="q" type="search" placeholder="e.g., cefepime, carbapenem, anaerobe…" autocomplete="off"/>
-          </div>
-
-          <div class="field" style="min-width:200px;">
-            <label for="categorySel">Category</label>
-            <select id="categorySel">
-              <option value="">All categories</option>
-            </select>
-          </div>
-
-          <div class="field" style="min-width:220px;">
-            <label for="routeSel">Route</label>
-            <select id="routeSel">
-              <option value="">Any route</option>
-              <option value="IV">IV</option>
-              <option value="PO">PO</option>
-              <option value="IV/PO">IV/PO</option>
-            </select>
-          </div>
-
-          <div class="field" style="min-width:220px;">
-            <label for="scoreSel">Spectrum score ≥</label>
-            <select id="scoreSel">
-              <option value="">No minimum</option>
-              <option value="1">≥ 1</option>
-              <option value="2">≥ 2</option>
-              <option value="3">≥ 3</option>
-              <option value="4">≥ 4</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="field" style="min-width: 360px; flex: 1;">
-            <label>Selected organisms</label>
-            <div class="chips" id="selectedChips"></div>
-          </div>
-
-          <div class="field" style="min-width: 260px;">
-            <label>Optional columns</label>
-            <div class="row" style="gap:8px;">
-              <label class="btn" style="padding:8px 10px;">
-                <input type="checkbox" id="toggleScore" checked style="margin:0 8px 0 0;"/>
-                Spectrum score
-              </label>
-              <label class="btn" style="padding:8px 10px;">
-                <input type="checkbox" id="toggleNotes" style="margin:0 8px 0 0;"/>
-                Notes
-              </label>
-            </div>
-          </div>
-
-        </div>
+        <button id="resetBtn" type="button">Reset</button>
+        <button id="exportBtn" type="button">Export filtered CSV</button>
       </div>
 
-      <div class="meta">
-        <div class="note" id="countNote">Showing 0 agents</div>
+      <div>
+        <h2 style="margin-top: 14px;">Legend</h2>
         <div class="legend">
-          <span style="display:flex; align-items:center; gap:6px;"><span class="swatch great"></span>Strong</span>
-          <span style="display:flex; align-items:center; gap:6px;"><span class="swatch good"></span>Good</span>
-          <span style="display:flex; align-items:center; gap:6px;"><span class="swatch ok"></span>Limited</span>
-          <span style="display:flex; align-items:center; gap:6px;"><span class="swatch bad"></span>Poor</span>
-          <span style="display:flex; align-items:center; gap:6px;"><span class="swatch na"></span>N/A</span>
+          <div class="swatch"><b>+++</b> strong</div>
+          <div class="swatch"><b>++</b> moderate</div>
+          <div class="swatch"><b>+</b> weak / variable</div>
+          <div class="swatch"><b>syn</b> synergy note</div>
+          <div class="swatch"><b>--</b> poor</div>
+          <div class="swatch"><b>X</b> no / not useful</div>
         </div>
       </div>
 
-      <div style="padding: 12px 14px;">
-        <div class="xscroll" id="topXScroll" aria-label="Horizontal scroll (top)">
-  <div id="topXScrollInner"></div>
+      <div class="notice" style="margin-top: 6px;">
+        CoAST is for teaching; real-world choices depend on site of infection, patient factors, and local susceptibility patterns.
+      </div>
+    </div>
+  </aside>
+
+  <main class="panel">
+    <div class="topbar">
+      <div>
+        <div id="activeFilters"></div>
+        <div class="count" id="count"></div>
+      </div>
+      <div class="notice">
+        Keyboard: <span class="kbd">/</span> focuses search • <span class="kbd">Esc</span> clears search
+      </div>
+    </div>
+
+    <div id="topHScroll" class="hscroll-top" aria-hidden="true"><div id="topHScrollInner" class="hscroll-inner"></div></div>
+<div class="tablewrap" id="resultsWrap">
+  <table id="resultsTable" aria-label="Antimicrobial activity table">
+    <colgroup id="resultsColgroup"></colgroup>
+    <thead>
+      <tr id="theadRow"></tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
 </div>
-<div class="tablewrap" id="tableWrap">
-          <table id="resultsTable">
-        <colgroup id="colgroup"></colgroup>
-            <thead>
-              <tr id="theadRow"></tr>
-            </thead>
-            <tbody id="tbody"></tbody>
-          </table>
-        </div>
-      </div>
+  </main>
+</div>
 
-      <div class="footer">
-        <strong>Notes:</strong> This is a teaching tool / quick-reference style visualization. It does not replace an antibiogram, guideline, MICs, or clinical judgment.
-      </div>
-    </div>
-  </div>
-
-  <!-- Organism chooser modal -->
-  <div class="modal" id="orgModal" role="dialog" aria-modal="true" aria-labelledby="orgTitle">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 id="orgTitle">Choose organisms to display</h2>
-        <div class="row">
-          <button class="btn" id="selectCommonBtn" type="button">Common set</button>
-          <button class="btn" id="selectAllBtn" type="button">Select all</button>
-          <button class="btn" id="clearAllBtn" type="button">Clear</button>
-          <button class="btn primary" id="closeModalBtn" type="button">Done</button>
-        </div>
-      </div>
-      <div class="modal-grid" id="orgGrid"></div>
-    </div>
-  </div>
+<div class="footer">
+  Generated 2026-02-09 from CoAST_2026.xlsx. If you update the spreadsheet, re-run the generator to refresh this HTML.
+</div>
 
 <script>
-(() => {
-  // --- Data ------------------------------------------------------------
-  // Activity rating per organism (4=strong, 3=good, 2=limited, 1=poor, 0=n/a)
-  // You can edit these values to match your course sheet.
+  const DATA = [{"Category": "Antibacterials", "Drug": "Penicillin G", "Class": "Penicillin", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "++", "Staph aureus (MSSA)": "--", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "++", "Enterococcus faecium (VRE)": "--", "H. influenzae": "--", "Moraxella cattarhalis": "--", "Proteus spp.": "X", "E. coli": "X", "Klebsiella": "X", "Serratia": "X", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "X", "B. fragilis": "--", "Spectrum Score": "12.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Amoxicillin", "Class": "Penicillin", "Route": "PO", "Strep pyogenes": "+++", "S. pneumoniae": "++", "Staph aureus (MSSA)": "--", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "+++", "Enterococcus faecium (VRE)": "--", "H. influenzae": "++", "Moraxella cattarhalis": "--", "Proteus spp.": "--", "E. coli": "--", "Klebsiella": "X", "Serratia": "--", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "X", "B. fragilis": "--", "Spectrum Score": "18.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Ampicillin", "Class": "Penicillin", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "++", "Staph aureus (MSSA)": "--", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "+++", "Enterococcus faecium (VRE)": "--", "H. influenzae": "++", "Moraxella cattarhalis": "--", "Proteus spp.": "--", "E. coli": "--", "Klebsiella": "X", "Serratia": "--", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "X", "B. fragilis": "--", "Spectrum Score": "18.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Nafcillin", "Class": "Penicillin", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "++", "Staph aureus (MSSA)": "+++", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "--", "Enterococcus faecium (VRE)": "--", "H. influenzae": "--", "Moraxella cattarhalis": "--", "Proteus spp.": "X", "E. coli": "X", "Klebsiella": "X", "Serratia": "X", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "X", "B. fragilis": "--", "Spectrum Score": "8.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Dicloxacillin", "Class": "Penicillin", "Route": "PO", "Strep pyogenes": "+++", "S. pneumoniae": "++", "Staph aureus (MSSA)": "+++", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "--", "Enterococcus faecium (VRE)": "--", "H. influenzae": "--", "Moraxella cattarhalis": "--", "Proteus spp.": "X", "E. coli": "X", "Klebsiella": "X", "Serratia": "X", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "X", "B. fragilis": "--", "Spectrum Score": "9.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Amoxicillin/clavulanate", "Class": "Penicillin", "Route": "PO", "Strep pyogenes": "+++", "S. pneumoniae": "++", "Staph aureus (MSSA)": "+++", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "+++", "Enterococcus faecium (VRE)": "--", "H. influenzae": "+++", "Moraxella cattarhalis": "+++", "Proteus spp.": "++", "E. coli": "++", "Klebsiella": "++", "Serratia": "--", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "X", "B. fragilis": "+++", "Spectrum Score": "29.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Ampicillin/sulbactam", "Class": "Penicillin", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "++", "Staph aureus (MSSA)": "+++", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "+++", "Enterococcus faecium (VRE)": "--", "H. influenzae": "+++", "Moraxella cattarhalis": "+++", "Proteus spp.": "++", "E. coli": "++", "Klebsiella": "++", "Serratia": "--", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "X", "B. fragilis": "+++", "Spectrum Score": "29.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Piperacillin/tazobactam", "Class": "Penicillin", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "++", "Staph aureus (MSSA)": "+++", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "++", "Enterococcus faecium (VRE)": "--", "H. influenzae": "+++", "Moraxella cattarhalis": "+++", "Proteus spp.": "+++", "E. coli": "+++", "Klebsiella": "+++", "Serratia": "+++", "Enterobacter cloacae": "++", "Pseudomonas aeruginosa": "++", "Atypical respiratory pathogens": "X", "B. fragilis": "+++", "Spectrum Score": "39.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Cefazolin", "Class": "Cephalosporin", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "++", "Staph aureus (MSSA)": "+++", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "--", "Moraxella cattarhalis": "--", "Proteus spp.": "+", "E. coli": "+", "Klebsiella": "+", "Serratia": "X", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "X", "B. fragilis": "--", "Spectrum Score": "16.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Cephalexin", "Class": "Cephalosporin", "Route": "PO", "Strep pyogenes": "+++", "S. pneumoniae": "+++", "Staph aureus (MSSA)": "++", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "--", "Moraxella cattarhalis": "--", "Proteus spp.": "+", "E. coli": "+", "Klebsiella": "+", "Serratia": "X", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "X", "B. fragilis": "--", "Spectrum Score": "14.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Cefuroxime", "Class": "Cephalosporin", "Route": "IV/PO", "Strep pyogenes": "+++", "S. pneumoniae": "++", "Staph aureus (MSSA)": "++", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "++", "Moraxella cattarhalis": "++", "Proteus spp.": "+++", "E. coli": "++", "Klebsiella": "++", "Serratia": "X", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "X", "B. fragilis": "X", "Spectrum Score": "20.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Cefotetan/Cefoxitin", "Class": "Cephalosporin", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "++", "Staph aureus (MSSA)": "++", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "++", "Moraxella cattarhalis": "++", "Proteus spp.": "+++", "E. coli": "++", "Klebsiella": "++", "Serratia": "X", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "X", "B. fragilis": "++", "Spectrum Score": "21.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Ceftriaxone/Cefotaxime", "Class": "Cephalosporin", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "+++", "Staph aureus (MSSA)": "++", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "+++", "Moraxella cattarhalis": "+++", "Proteus spp.": "+++", "E. coli": "+++", "Klebsiella": "+++", "Serratia": "+++", "Enterobacter cloacae": "++", "Pseudomonas aeruginosa": "--", "Atypical respiratory pathogens": "X", "B. fragilis": "--", "Spectrum Score": "31.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Ceftazidime", "Class": "Cephalosporin", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "+", "Staph aureus (MSSA)": "--", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "+++", "Moraxella cattarhalis": "+++", "Proteus spp.": "+++", "E. coli": "+++", "Klebsiella": "+++", "Serratia": "+++", "Enterobacter cloacae": "++", "Pseudomonas aeruginosa": "++", "Atypical respiratory pathogens": "X", "B. fragilis": "--", "Spectrum Score": "28.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Ceftazidime/avibactam", "Class": "Cephalosporin", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "--", "Staph aureus (MSSA)": "--", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "+++", "Moraxella cattarhalis": "+++", "Proteus spp.": "+++", "E. coli": "+++", "Klebsiella": "+++", "Serratia": "+++", "Enterobacter cloacae": "+++", "Pseudomonas aeruginosa": "+++", "Atypical respiratory pathogens": "X", "B. fragilis": "--", "Spectrum Score": "30.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Ceftolozane/tazobactam", "Class": "Cephalosporin", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "--", "Staph aureus (MSSA)": "--", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "+++", "Moraxella cattarhalis": "+++", "Proteus spp.": "+++", "E. coli": "+++", "Klebsiella": "+++", "Serratia": "+++", "Enterobacter cloacae": "++", "Pseudomonas aeruginosa": "+++", "Atypical respiratory pathogens": "X", "B. fragilis": "--", "Spectrum Score": "29.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Cefepime", "Class": "Cephalosporin", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "+++", "Staph aureus (MSSA)": "+++", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "+++", "Moraxella cattarhalis": "+++", "Proteus spp.": "+++", "E. coli": "+++", "Klebsiella": "+++", "Serratia": "+++", "Enterobacter cloacae": "++", "Pseudomonas aeruginosa": "++", "Atypical respiratory pathogens": "X", "B. fragilis": "--", "Spectrum Score": "35.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Ceftaroline", "Class": "Cephalosporin", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "+++", "Staph aureus (MSSA)": "+++", "Staph aureus (MRSA)": "++", "Enterooccus faecalis": "--", "Enterococcus faecium (VRE)": "--", "H. influenzae": "+++", "Moraxella cattarhalis": "+++", "Proteus spp.": "+++", "E. coli": "+++", "Klebsiella": "+++", "Serratia": "+++", "Enterobacter cloacae": "++", "Pseudomonas aeruginosa": "--", "Atypical respiratory pathogens": "X", "B. fragilis": "--", "Spectrum Score": "34.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Aztreonam", "Class": "Monobactam", "Route": "IV", "Strep pyogenes": "X", "S. pneumoniae": "X", "Staph aureus (MSSA)": "X", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "+++", "Moraxella cattarhalis": "+++", "Proteus spp.": "+++", "E. coli": "+++", "Klebsiella": "+++", "Serratia": "+++", "Enterobacter cloacae": "++", "Pseudomonas aeruginosa": "++", "Atypical respiratory pathogens": "X", "B. fragilis": "X", "Spectrum Score": "25.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Ertapenem", "Class": "Carbapenem", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "++", "Staph aureus (MSSA)": "+++", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "+++", "Moraxella cattarhalis": "+++", "Proteus spp.": "+++", "E. coli": "+++", "Klebsiella": "+++", "Serratia": "+++", "Enterobacter cloacae": "+++", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "X", "B. fragilis": "+++", "Spectrum Score": "38.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Imi/Meropenem", "Class": "Carbapenem", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "++", "Staph aureus (MSSA)": "+++", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "+", "Enterococcus faecium (VRE)": "--", "H. influenzae": "+++", "Moraxella cattarhalis": "+++", "Proteus spp.": "+++", "E. coli": "+++", "Klebsiella": "+++", "Serratia": "+++", "Enterobacter cloacae": "+++", "Pseudomonas aeruginosa": "++", "Atypical respiratory pathogens": "X", "B. fragilis": "+++", "Spectrum Score": "41.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Ciprofloxacin", "Class": "Fluoroquinolone", "Route": "IV/PO", "Strep pyogenes": "++", "S. pneumoniae": "--", "Staph aureus (MSSA)": "--", "Staph aureus (MRSA)": "--", "Enterooccus faecalis": "--", "Enterococcus faecium (VRE)": "--", "H. influenzae": "+++", "Moraxella cattarhalis": "+++", "Proteus spp.": "+++", "E. coli": "++", "Klebsiella": "+++", "Serratia": "+++", "Enterobacter cloacae": "++", "Pseudomonas aeruginosa": "++", "Atypical respiratory pathogens": "--", "B. fragilis": "--", "Spectrum Score": "27.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Levofloxacin", "Class": "Fluoroquinolone", "Route": "IV/PO", "Strep pyogenes": "+++", "S. pneumoniae": "+++", "Staph aureus (MSSA)": "--", "Staph aureus (MRSA)": "--", "Enterooccus faecalis": "--", "Enterococcus faecium (VRE)": "--", "H. influenzae": "+++", "Moraxella cattarhalis": "+++", "Proteus spp.": "+++", "E. coli": "++", "Klebsiella": "+++", "Serratia": "+++", "Enterobacter cloacae": "++", "Pseudomonas aeruginosa": "++", "Atypical respiratory pathogens": "+++", "B. fragilis": "--", "Spectrum Score": "35.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Moxifloxacin", "Class": "Fluoroquinolone", "Route": "IV/PO", "Strep pyogenes": "+++", "S. pneumoniae": "+++", "Staph aureus (MSSA)": "--", "Staph aureus (MRSA)": "--", "Enterooccus faecalis": "--", "Enterococcus faecium (VRE)": "--", "H. influenzae": "+++", "Moraxella cattarhalis": "+++", "Proteus spp.": "+++", "E. coli": "++", "Klebsiella": "+++", "Serratia": "+++", "Enterobacter cloacae": "++", "Pseudomonas aeruginosa": "--", "Atypical respiratory pathogens": "+++", "B. fragilis": "+", "Spectrum Score": "35.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Erythromycin", "Class": "Macrolide", "Route": "IV/PO", "Strep pyogenes": "++", "S. pneumoniae": "+", "Staph aureus (MSSA)": "--", "Staph aureus (MRSA)": "--", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "--", "Moraxella cattarhalis": "--", "Proteus spp.": "--", "E. coli": "--", "Klebsiella": "--", "Serratia": "X", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "++", "B. fragilis": "X", "Spectrum Score": "7.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Clarithromycin", "Class": "Macrolide", "Route": "PO", "Strep pyogenes": "++", "S. pneumoniae": "+", "Staph aureus (MSSA)": "--", "Staph aureus (MRSA)": "--", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "+", "Moraxella cattarhalis": "+", "Proteus spp.": "--", "E. coli": "--", "Klebsiella": "--", "Serratia": "X", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "+++", "B. fragilis": "X", "Spectrum Score": "10.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Azithromycin", "Class": "Macrolide", "Route": "IV/PO", "Strep pyogenes": "++", "S. pneumoniae": "+", "Staph aureus (MSSA)": "--", "Staph aureus (MRSA)": "--", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "++", "Moraxella cattarhalis": "++", "Proteus spp.": "--", "E. coli": "--", "Klebsiella": "--", "Serratia": "X", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "+++", "B. fragilis": "X", "Spectrum Score": "12.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Doxycycline", "Class": "Tetracycline", "Route": "IV/PO", "Strep pyogenes": "++", "S. pneumoniae": "++", "Staph aureus (MSSA)": "++", "Staph aureus (MRSA)": "++", "Enterooccus faecalis": "--", "Enterococcus faecium (VRE)": "--", "H. influenzae": "++", "Moraxella cattarhalis": "++", "Proteus spp.": "--", "E. coli": "--", "Klebsiella": "--", "Serratia": "--", "Enterobacter cloacae": "--", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "+++", "B. fragilis": "--", "Spectrum Score": "16.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Tigecycline", "Class": "Tetracycline", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "+++", "Staph aureus (MSSA)": "+++", "Staph aureus (MRSA)": "+++", "Enterooccus faecalis": "++", "Enterococcus faecium (VRE)": "++", "H. influenzae": "+++", "Moraxella cattarhalis": "+++", "Proteus spp.": "--", "E. coli": "+++", "Klebsiella": "+++", "Serratia": "+++", "Enterobacter cloacae": "+++", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "+++", "B. fragilis": "+++", "Spectrum Score": "42.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Gentamicin/tobramycin", "Class": "Aminoglycoside", "Route": "IV", "Strep pyogenes": "syn", "S. pneumoniae": "syn", "Staph aureus (MSSA)": "syn", "Staph aureus (MRSA)": "syn", "Enterooccus faecalis": "syn", "Enterococcus faecium (VRE)": "syn", "H. influenzae": "--", "Moraxella cattarhalis": "--", "Proteus spp.": "+++", "E. coli": "+++", "Klebsiella": "+++", "Serratia": "+++", "Enterobacter cloacae": "+++", "Pseudomonas aeruginosa": "++", "Atypical respiratory pathogens": "--", "B. fragilis": "--", "Spectrum Score": "18.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "TMP/SMX", "Class": "Antifolate", "Route": "IV/PO", "Strep pyogenes": "++", "S. pneumoniae": "+", "Staph aureus (MSSA)": "+++", "Staph aureus (MRSA)": "++", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "--", "Moraxella cattarhalis": "--", "Proteus spp.": "++", "E. coli": "+", "Klebsiella": "++", "Serratia": "++", "Enterobacter cloacae": "++", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "--", "B. fragilis": "--", "Spectrum Score": "13.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Clindamycin", "Class": "Lincosamide", "Route": "IV/PO", "Strep pyogenes": "++", "S. pneumoniae": "++", "Staph aureus (MSSA)": "++", "Staph aureus (MRSA)": "+", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "X", "Moraxella cattarhalis": "X", "Proteus spp.": "X", "E. coli": "X", "Klebsiella": "X", "Serratia": "X", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "--", "B. fragilis": "+", "Spectrum Score": "8.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Metronidazole", "Class": "Nitroimidazole", "Route": "IV/PO", "Strep pyogenes": "X", "S. pneumoniae": "X", "Staph aureus (MSSA)": "X", "Staph aureus (MRSA)": "X", "Enterooccus faecalis": "X", "Enterococcus faecium (VRE)": "X", "H. influenzae": "X", "Moraxella cattarhalis": "X", "Proteus spp.": "X", "E. coli": "X", "Klebsiella": "X", "Serratia": "X", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "X", "B. fragilis": "+++", "Spectrum Score": "3.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Linezolid", "Class": "Oxazolidininone", "Route": "IV/PO", "Strep pyogenes": "+++", "S. pneumoniae": "+++", "Staph aureus (MSSA)": "+++", "Staph aureus (MRSA)": "+++", "Enterooccus faecalis": "+++", "Enterococcus faecium (VRE)": "+++", "H. influenzae": "--", "Moraxella cattarhalis": "--", "Proteus spp.": "X", "E. coli": "X", "Klebsiella": "X", "Serratia": "X", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "--", "B. fragilis": "--", "Spectrum Score": "18.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Daptomycin", "Class": "Lipopeptide", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "+++", "Staph aureus (MSSA)": "+++", "Staph aureus (MRSA)": "+++", "Enterooccus faecalis": "+++", "Enterococcus faecium (VRE)": "++", "H. influenzae": "X", "Moraxella cattarhalis": "X", "Proteus spp.": "X", "E. coli": "X", "Klebsiella": "X", "Serratia": "X", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "X", "B. fragilis": "X", "Spectrum Score": "17.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antibacterials", "Drug": "Vancomycin/Dalba/Orita", "Class": "Glycopeptide", "Route": "IV", "Strep pyogenes": "+++", "S. pneumoniae": "+++", "Staph aureus (MSSA)": "+++", "Staph aureus (MRSA)": "+++", "Enterooccus faecalis": "+++", "Enterococcus faecium (VRE)": "--", "H. influenzae": "X", "Moraxella cattarhalis": "X", "Proteus spp.": "X", "E. coli": "X", "Klebsiella": "X", "Serratia": "X", "Enterobacter cloacae": "X", "Pseudomonas aeruginosa": "X", "Atypical respiratory pathogens": "X", "B. fragilis": "X", "Spectrum Score": "15.0", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antifungals", "Drug": "Amphotericin B", "Class": "Polyene", "Route": "IV", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "1.0", "Candida albicans/ parapsilosis/ tropicalis": "+++", "Candida glabrata": "+++", "Candida krusei": "+++", "Cryptococcus neoformans": "+++", "Coccidioides immitis": "+++", "Aspergillus spp": "++", "Fusarium spp": "+", "Zygomyces": "++", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antifungals", "Drug": "Fluconazole", "Class": "Azole", "Route": "IV/PO", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "2.0", "Candida albicans/ parapsilosis/ tropicalis": "+++", "Candida glabrata": "+", "Candida krusei": "X", "Cryptococcus neoformans": "+++", "Coccidioides immitis": "+++", "Aspergillus spp": "X", "Fusarium spp": "X", "Zygomyces": "X", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antifungals", "Drug": "Itraconazole", "Class": "Azole", "Route": "PO", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "3.0", "Candida albicans/ parapsilosis/ tropicalis": "+++", "Candida glabrata": "+", "Candida krusei": "+", "Cryptococcus neoformans": "+++", "Coccidioides immitis": "+++", "Aspergillus spp": "+", "Fusarium spp": "--", "Zygomyces": "--", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antifungals", "Drug": "Voriconazole", "Class": "Azole", "Route": "IV/PO", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "4.0", "Candida albicans/ parapsilosis/ tropicalis": "+++", "Candida glabrata": "+", "Candida krusei": "+++", "Cryptococcus neoformans": "+++", "Coccidioides immitis": "+++", "Aspergillus spp": "+++", "Fusarium spp": "+++", "Zygomyces": "--", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antifungals", "Drug": "Posa/Isavuconazole", "Class": "Azole", "Route": "IV/PO", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "5.0", "Candida albicans/ parapsilosis/ tropicalis": "+++", "Candida glabrata": "+", "Candida krusei": "+++", "Cryptococcus neoformans": "+++", "Coccidioides immitis": "+++", "Aspergillus spp": "+++", "Fusarium spp": "+", "Zygomyces": "++", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antifungals", "Drug": "Caspo/mica/ anidulafungin", "Class": "Echinocandin", "Route": "IV", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "6.0", "Candida albicans/ parapsilosis/ tropicalis": "+++", "Candida glabrata": "+++", "Candida krusei": "+++", "Cryptococcus neoformans": "X", "Coccidioides immitis": "--", "Aspergillus spp": "++", "Fusarium spp": "--", "Zygomyces": "syn", "Herpes simplex virus": "", "Varicella-zoster virus": "", "Cyto-megalovirus": "", "Respiratory syncytial virus": "", "Influenza A": "", "Influenza B": "", "SARS-CoV-2": ""}, {"Category": "Antivirals", "Drug": "Acyclovir/Valacyclovir", "Class": "Nucleoside analog", "Route": "IV/PO", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "1.0", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "+++", "Varicella-zoster virus": "++", "Cyto-megalovirus": "--", "Respiratory syncytial virus": "--", "Influenza A": "X", "Influenza B": "X", "SARS-CoV-2": "X"}, {"Category": "Antivirals", "Drug": "Famciclovir", "Class": "Nucleoside analog", "Route": "PO", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "+++", "Varicella-zoster virus": "++", "Cyto-megalovirus": "--", "Respiratory syncytial virus": "--", "Influenza A": "X", "Influenza B": "X", "SARS-CoV-2": "X"}, {"Category": "Antivirals", "Drug": "Ganciclovir/Valganciclovir", "Class": "Nucleoside analog", "Route": "IV/PO", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "2.0", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "+++", "Varicella-zoster virus": "++", "Cyto-megalovirus": "++", "Respiratory syncytial virus": "--", "Influenza A": "X", "Influenza B": "X", "SARS-CoV-2": "X"}, {"Category": "Antivirals", "Drug": "Foscarnet", "Class": "Pyrophosphate analog", "Route": "IV", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "3.0", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "+++", "Varicella-zoster virus": "++", "Cyto-megalovirus": "++", "Respiratory syncytial virus": "--", "Influenza A": "X", "Influenza B": "X", "SARS-CoV-2": "X"}, {"Category": "Antivirals", "Drug": "Cidofovir", "Class": "Nucleoside analog", "Route": "IV", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "4.0", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "+++", "Varicella-zoster virus": "++", "Cyto-megalovirus": "++", "Respiratory syncytial virus": "--", "Influenza A": "X", "Influenza B": "X", "SARS-CoV-2": "X"}, {"Category": "Antivirals", "Drug": "Letermovir", "Class": "Terminase inhibitor", "Route": "PO", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "X", "Varicella-zoster virus": "X", "Cyto-megalovirus": "+++", "Respiratory syncytial virus": "X", "Influenza A": "X", "Influenza B": "X", "SARS-CoV-2": "X"}, {"Category": "Antivirals", "Drug": "Ribavirin", "Class": "Nucleoside analog", "Route": "INH/PO", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "5.0", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "--", "Varicella-zoster virus": "--", "Cyto-megalovirus": "--", "Respiratory syncytial virus": "+++", "Influenza A": "--", "Influenza B": "--", "SARS-CoV-2": "X"}, {"Category": "Antivirals", "Drug": "Oseltamivir", "Class": "Neuraminidase inhibitor", "Route": "PO", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "6.0", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "X", "Varicella-zoster virus": "X", "Cyto-megalovirus": "X", "Respiratory syncytial virus": "X", "Influenza A": "+++", "Influenza B": "+++", "SARS-CoV-2": "X"}, {"Category": "Antivirals", "Drug": "Zanamivir", "Class": "Neuraminidase inhibitor", "Route": "INH", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "7.0", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "X", "Varicella-zoster virus": "X", "Cyto-megalovirus": "X", "Respiratory syncytial virus": "X", "Influenza A": "+++", "Influenza B": "+++", "SARS-CoV-2": "X"}, {"Category": "Antivirals", "Drug": "Baloxavir", "Class": "Endonuclease inhibitor", "Route": "PO", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "8.0", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "X", "Varicella-zoster virus": "X", "Cyto-megalovirus": "X", "Respiratory syncytial virus": "X", "Influenza A": "+++", "Influenza B": "+++", "SARS-CoV-2": "X"}, {"Category": "Antivirals", "Drug": "Nirmatrelvir", "Class": "Protease inhibitor", "Route": "PO", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "X", "Varicella-zoster virus": "X", "Cyto-megalovirus": "X", "Respiratory syncytial virus": "X", "Influenza A": "X", "Influenza B": "X", "SARS-CoV-2": "+++"}, {"Category": "Antivirals", "Drug": "Molnupiravir", "Class": "Polymerase mutagen", "Route": "PO", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "X", "Varicella-zoster virus": "X", "Cyto-megalovirus": "X", "Respiratory syncytial virus": "X", "Influenza A": "+", "Influenza B": "+", "SARS-CoV-2": "+++"}, {"Category": "Antivirals", "Drug": "Remdesivir", "Class": "Nucleoside analog", "Route": "IV", "Strep pyogenes": "", "S. pneumoniae": "", "Staph aureus (MSSA)": "", "Staph aureus (MRSA)": "", "Enterooccus faecalis": "", "Enterococcus faecium (VRE)": "", "H. influenzae": "", "Moraxella cattarhalis": "", "Proteus spp.": "", "E. coli": "", "Klebsiella": "", "Serratia": "", "Enterobacter cloacae": "", "Pseudomonas aeruginosa": "", "Atypical respiratory pathogens": "", "B. fragilis": "", "Spectrum Score": "", "Original Order": "", "Candida albicans/ parapsilosis/ tropicalis": "", "Candida glabrata": "", "Candida krusei": "", "Cryptococcus neoformans": "", "Coccidioides immitis": "", "Aspergillus spp": "", "Fusarium spp": "", "Zygomyces": "", "Herpes simplex virus": "X", "Varicella-zoster virus": "X", "Cyto-megalovirus": "X", "Respiratory syncytial virus": "X", "Influenza A": "X", "Influenza B": "X", "SARS-CoV-2": "+++"}];
 
-  const ORGANISM_META = {
-    "MSSA": "Methicillin-susceptible Staphylococcus aureus",
-    "MRSA": "Methicillin-resistant Staphylococcus aureus",
-    "Strep spp": "β-hemolytic streptococci (A/B/C/G) + viridans (simplified)",
-    "Enterococcus faecalis": "E. faecalis (ampicillin-susceptible assumed)",
-    "Enterococcus faecium": "E. faecium (VRE risk; simplified)",
-    "E. coli": "Escherichia coli",
-    "Klebsiella pneumoniae": "Klebsiella pneumoniae",
-    "Enterobacter cloacae": "AmpC-risk Enterobacter cloacae complex",
-    "Pseudomonas aeruginosa": "P. aeruginosa",
-    "Acinetobacter baumannii": "A. baumannii complex",
-    "H. influenzae": "Haemophilus influenzae",
-    "Moraxella catarrhalis": "Moraxella catarrhalis",
-    "Bacteroides fragilis": "Bacteroides fragilis group (anaerobe)",
-    "C. difficile": "Clostridioides difficile (for harm/avoid columns if desired)",
-    "Atypicals": "Legionella, Mycoplasma, Chlamydia (simplified)"
-  };
+  // Normalize route labels (avoid inconsistent IV/PO labels)
+  function normalizeRouteLabel(v){
+    if (v == null) return v;
+    const raw = String(v).trim();
+    const compact = raw.replace(/\s+/g, "").toUpperCase();
+    if (compact === "PO/IV") return "IV/PO";
+    return raw;
+  }
+  DATA.forEach(r => { if (r && typeof r.Route !== "undefined") r.Route = normalizeRouteLabel(r.Route); });
 
-  const DRUGS = [
-    {
-      Category: "Penicillins",
-      Drug: "Nafcillin / Oxacillin",
-      Class: "Anti-staphylococcal penicillin",
-      Route: "IV",
-      Notes: "MSSA only; no Enterococcus; no Gram-neg coverage.",
-      Activity: {
-        "MSSA": 4, "MRSA": 0, "Strep spp": 3,
-        "Enterococcus faecalis": 0, "Enterococcus faecium": 0,
-        "E. coli": 0, "Klebsiella pneumoniae": 0, "Enterobacter cloacae": 0,
-        "Pseudomonas aeruginosa": 0, "Acinetobacter baumannii": 0,
-        "H. influenzae": 0, "Moraxella catarrhalis": 0,
-        "Bacteroides fragilis": 0, "C. difficile": 0, "Atypicals": 0
-      }
-    },
-    {
-      Category: "Penicillins",
-      Drug: "Amoxicillin",
-      Class: "Aminopenicillin",
-      Route: "PO",
-      Notes: "No beta-lactamase inhibitor; weak Gram-neg; no Pseudomonas.",
-      Activity: {
-        "MSSA": 1, "MRSA": 0, "Strep spp": 4,
-        "Enterococcus faecalis": 3, "Enterococcus faecium": 1,
-        "E. coli": 1, "Klebsiella pneumoniae": 0, "Enterobacter cloacae": 0,
-        "Pseudomonas aeruginosa": 0, "Acinetobacter baumannii": 0,
-        "H. influenzae": 1, "Moraxella catarrhalis": 0,
-        "Bacteroides fragilis": 0, "C. difficile": 0, "Atypicals": 0
-      }
-    },
-    {
-      Category: "Penicillins",
-      Drug: "Amoxicillin-clavulanate",
-      Class: "Aminopenicillin + BLI",
-      Route: "PO",
-      Notes: "Adds anaerobes and many beta-lactamase producers; not Pseudomonas.",
-      Activity: {
-        "MSSA": 3, "MRSA": 0, "Strep spp": 4,
-        "Enterococcus faecalis": 3, "Enterococcus faecium": 1,
-        "E. coli": 2, "Klebsiella pneumoniae": 2, "Enterobacter cloacae": 1,
-        "Pseudomonas aeruginosa": 0, "Acinetobacter baumannii": 0,
-        "H. influenzae": 3, "Moraxella catarrhalis": 3,
-        "Bacteroides fragilis": 3, "C. difficile": 0, "Atypicals": 0
-      }
-    },
-    {
-      Category: "Cephalosporins",
-      Drug: "Cefazolin",
-      Class: "1st gen cephalosporin",
-      Route: "IV",
-      Notes: "Good MSSA & strep; limited Gram-neg; no Enterococcus.",
-      Activity: {
-        "MSSA": 4, "MRSA": 0, "Strep spp": 3,
-        "Enterococcus faecalis": 0, "Enterococcus faecium": 0,
-        "E. coli": 2, "Klebsiella pneumoniae": 2, "Enterobacter cloacae": 0,
-        "Pseudomonas aeruginosa": 0, "Acinetobacter baumannii": 0,
-        "H. influenzae": 0, "Moraxella catarrhalis": 0,
-        "Bacteroides fragilis": 0, "C. difficile": 0, "Atypicals": 0
-      }
-    },
-    {
-      Category: "Cephalosporins",
-      Drug: "Ceftriaxone",
-      Class: "3rd gen cephalosporin",
-      Route: "IV",
-      Notes: "No Pseudomonas; avoid for AmpC-risk organisms when serious infection.",
-      Activity: {
-        "MSSA": 1, "MRSA": 0, "Strep spp": 4,
-        "Enterococcus faecalis": 0, "Enterococcus faecium": 0,
-        "E. coli": 4, "Klebsiella pneumoniae": 4, "Enterobacter cloacae": 1,
-        "Pseudomonas aeruginosa": 0, "Acinetobacter baumannii": 0,
-        "H. influenzae": 4, "Moraxella catarrhalis": 3,
-        "Bacteroides fragilis": 0, "C. difficile": 0, "Atypicals": 0
-      }
-    },
-    {
-      Category: "Cephalosporins",
-      Drug: "Cefepime",
-      Class: "4th gen cephalosporin",
-      Route: "IV",
-      Notes: "Pseudomonas + many AmpC-risk Enterobacterales; no anaerobes, no Enterococcus.",
-      Activity: {
-        "MSSA": 2, "MRSA": 0, "Strep spp": 3,
-        "Enterococcus faecalis": 0, "Enterococcus faecium": 0,
-        "E. coli": 4, "Klebsiella pneumoniae": 4, "Enterobacter cloacae": 4,
-        "Pseudomonas aeruginosa": 4, "Acinetobacter baumannii": 2,
-        "H. influenzae": 4, "Moraxella catarrhalis": 3,
-        "Bacteroides fragilis": 0, "C. difficile": 0, "Atypicals": 0
-      }
-    },
-    {
-      Category: "Carbapenems",
-      Drug: "Piperacillin-tazobactam",
-      Class: "Ureidopenicillin + BLI",
-      Route: "IV",
-      Notes: "Broad incl anaerobes + Pseudomonas; not reliable for ESBL.",
-      Activity: {
-        "MSSA": 2, "MRSA": 0, "Strep spp": 3,
-        "Enterococcus faecalis": 2, "Enterococcus faecium": 0,
-        "E. coli": 3, "Klebsiella pneumoniae": 3, "Enterobacter cloacae": 3,
-        "Pseudomonas aeruginosa": 3, "Acinetobacter baumannii": 1,
-        "H. influenzae": 3, "Moraxella catarrhalis": 3,
-        "Bacteroides fragilis": 4, "C. difficile": 0, "Atypicals": 0
-      }
-    },
-    {
-      Category: "Carbapenems",
-      Drug: "Meropenem",
-      Class: "Carbapenem",
-      Route: "IV",
-      Notes: "Very broad incl anaerobes + Pseudomonas; not MRSA/Enterococcus faecium.",
-      Activity: {
-        "MSSA": 1, "MRSA": 0, "Strep spp": 3,
-        "Enterococcus faecalis": 2, "Enterococcus faecium": 0,
-        "E. coli": 4, "Klebsiella pneumoniae": 4, "Enterobacter cloacae": 4,
-        "Pseudomonas aeruginosa": 4, "Acinetobacter baumannii": 2,
-        "H. influenzae": 4, "Moraxella catarrhalis": 3,
-        "Bacteroides fragilis": 4, "C. difficile": 0, "Atypicals": 0
-      }
-    },
-    {
-      Category: "Glycopeptides",
-      Drug: "Vancomycin",
-      Class: "Glycopeptide",
-      Route: "IV",
-      Notes: "Gram+ only. No Gram-neg, no anaerobes, no atypicals.",
-      Activity: {
-        "MSSA": 3, "MRSA": 4, "Strep spp": 3,
-        "Enterococcus faecalis": 2, "Enterococcus faecium": 2,
-        "E. coli": 0, "Klebsiella pneumoniae": 0, "Enterobacter cloacae": 0,
-        "Pseudomonas aeruginosa": 0, "Acinetobacter baumannii": 0,
-        "H. influenzae": 0, "Moraxella catarrhalis": 0,
-        "Bacteroides fragilis": 0, "C. difficile": 0, "Atypicals": 0
-      }
-    },
-    {
-      Category: "Oxazolidinones",
-      Drug: "Linezolid",
-      Class: "Oxazolidinone",
-      Route: "IV/PO",
-      Notes: "Gram+ incl MRSA/VRE; no Gram-neg.",
-      Activity: {
-        "MSSA": 3, "MRSA": 4, "Strep spp": 3,
-        "Enterococcus faecalis": 3, "Enterococcus faecium": 3,
-        "E. coli": 0, "Klebsiella pneumoniae": 0, "Enterobacter cloacae": 0,
-        "Pseudomonas aeruginosa": 0, "Acinetobacter baumannii": 0,
-        "H. influenzae": 0, "Moraxella catarrhalis": 0,
-        "Bacteroides fragilis": 0, "C. difficile": 0, "Atypicals": 0
-      }
-    },
-    {
-      Category: "Fluoroquinolones",
-      Drug: "Levofloxacin",
-      Class: "Fluoroquinolone",
-      Route: "IV/PO",
-      Notes: "Respiratory FQ; variable Pseudomonas; no anaerobes.",
-      Activity: {
-        "MSSA": 2, "MRSA": 0, "Strep spp": 2,
-        "Enterococcus faecalis": 0, "Enterococcus faecium": 0,
-        "E. coli": 3, "Klebsiella pneumoniae": 3, "Enterobacter cloacae": 2,
-        "Pseudomonas aeruginosa": 2, "Acinetobacter baumannii": 1,
-        "H. influenzae": 4, "Moraxella catarrhalis": 4,
-        "Bacteroides fragilis": 0, "C. difficile": 0, "Atypicals": 4
-      }
-    },
-    {
-      Category: "Lincosamides",
-      Drug: "Clindamycin",
-      Class: "Lincosamide",
-      Route: "IV/PO",
-      Notes: "Gram+ (no Enterococcus) + anaerobes; high CDI risk; no Gram-neg aerobes.",
-      Activity: {
-        "MSSA": 3, "MRSA": 1, "Strep spp": 3,
-        "Enterococcus faecalis": 0, "Enterococcus faecium": 0,
-        "E. coli": 0, "Klebsiella pneumoniae": 0, "Enterobacter cloacae": 0,
-        "Pseudomonas aeruginosa": 0, "Acinetobacter baumannii": 0,
-        "H. influenzae": 0, "Moraxella catarrhalis": 0,
-        "Bacteroides fragilis": 3, "C. difficile": 0, "Atypicals": 0
-      }
-    }
-  ];
 
-  const ALL_ORGANISMS = Object.keys(ORGANISM_META);
+  const CAT_ORG = {"Antibacterials": ["Strep pyogenes", "S. pneumoniae", "Staph aureus (MSSA)", "Staph aureus (MRSA)", "Enterooccus faecalis", "Enterococcus faecium (VRE)", "H. influenzae", "Moraxella cattarhalis", "Proteus spp.", "E. coli", "Klebsiella", "Serratia", "Enterobacter cloacae", "Pseudomonas aeruginosa", "Atypical respiratory pathogens", "B. fragilis"], "Antifungals": ["Candida albicans/ parapsilosis/ tropicalis", "Candida glabrata", "Candida krusei", "Cryptococcus neoformans", "Coccidioides immitis", "Aspergillus spp", "Fusarium spp", "Zygomyces"], "Antivirals": ["Herpes simplex virus", "Varicella-zoster virus", "Cyto-megalovirus", "Respiratory syncytial virus", "Influenza A", "Influenza B", "SARS-CoV-2"]};
 
   const BASE_COLS = ["Category","Drug","Class","Route"];
-  const OPTIONAL_COLS = ["Spectrum score","Notes"];
+  const OPTIONAL_COLS = ["Spectrum Score"];
 
-  const commonSet = ["MSSA","MRSA","Strep spp","E. coli","Klebsiella pneumoniae","Enterobacter cloacae","Pseudomonas aeruginosa","Bacteroides fragilis","Atypicals"];
-
-  // --- DOM refs --------------------------------------------------------
-  const q = document.getElementById("q");
-  const categorySel = document.getElementById("categorySel");
-  const routeSel = document.getElementById("routeSel");
-  const scoreSel = document.getElementById("scoreSel");
-  const selectedChips = document.getElementById("selectedChips");
-  const countNote = document.getElementById("countNote");
-  const theadRow = document.getElementById("theadRow");
-  const tbody = document.getElementById("tbody");
-  const tableWrap = document.getElementById("tableWrap");
-  const topXScroll = document.getElementById("topXScroll");
-  const topXScrollInner = document.getElementById("topXScrollInner");
-  const colgroup = document.getElementById("colgroup");
-
-  const COL_WIDTHS_STORAGE_KEY = "coast_colWidths_v1";
-  let colWidths = (() => {
-    try { return JSON.parse(localStorage.getItem(COL_WIDTHS_STORAGE_KEY) || "{}") || {}; }
-    catch { return {}; }
+  // Theme (light by default; user can toggle)
+  (function initTheme(){
+    const saved = localStorage.getItem("coast_theme");
+    const initial = saved ? saved : "light";
+    document.documentElement.dataset.theme = initial;
+    const btn = document.getElementById("themeBtn");
+    function refresh(){
+      const isDark = document.documentElement.dataset.theme === "dark";
+      btn.textContent = isDark ? "Light mode" : "Dark mode";
+    }
+    btn.addEventListener("click", () => {
+      const next = (document.documentElement.dataset.theme === "dark") ? "light" : "dark";
+      document.documentElement.dataset.theme = next;
+      localStorage.setItem("coast_theme", next);
+      refresh();
+      // Some browsers need a tick before measuring widths
+      setTimeout(() => { applyStickyColumns(); makeColumnsResizable(); }, 0);
+    });
+    refresh();
   })();
-  let _saveColWidthsTimer = null;
-  function scheduleSaveColWidths() {
-    clearTimeout(_saveColWidthsTimer);
-    _saveColWidthsTimer = setTimeout(() => {
-      try { localStorage.setItem(COL_WIDTHS_STORAGE_KEY, JSON.stringify(colWidths)); } catch {}
-    }, 150);
-  }
-  function defaultColWidth(key) {
-    const k = (key || "").toLowerCase();
-    if (k === "category") return 140;
-    if (k === "drug") return 190;
-    if (k === "class") return 170;
-    if (k === "route") return 90;
-    if (k.includes("spectrum")) return 140;
-    return 140;
-  }
-  function getColWidth(key, fallbackPx) {
-    const w = colWidths[key];
-    if (Number.isFinite(w) && w > 30) return w;
-    if (Number.isFinite(fallbackPx) && fallbackPx > 30) return fallbackPx;
-    return defaultColWidth(key);
-  }
 
-  let _syncingXScroll = false;
-  function syncXScrollSize() {
-    const table = document.getElementById("resultsTable");
-    if (!table || !topXScroll || !topXScrollInner || !tableWrap) return;
-    const scrollW = table.scrollWidth;
-    topXScrollInner.style.width = scrollW + "px";
-    const needs = scrollW > tableWrap.clientWidth + 1;
-    topXScroll.style.display = needs ? "block" : "none";
-  }
-  function initXScrollSync() {
-    if (!tableWrap || !topXScroll) return;
-    tableWrap.addEventListener("scroll", () => {
-      if (_syncingXScroll) return;
-      _syncingXScroll = true;
-      topXScroll.scrollLeft = tableWrap.scrollLeft;
-      _syncingXScroll = false;
-    });
-    topXScroll.addEventListener("scroll", () => {
-      if (_syncingXScroll) return;
-      _syncingXScroll = true;
-      tableWrap.scrollLeft = topXScroll.scrollLeft;
-      _syncingXScroll = false;
-    });
-    window.addEventListener("resize", () => { syncXScrollSize(); });
-  }
-
-  const organismBtn = document.getElementById("organismBtn");
-  const resetBtn = document.getElementById("resetBtn");
-  const toggleScore = document.getElementById("toggleScore");
-  const toggleNotes = document.getElementById("toggleNotes");
-
-  const orgModal = document.getElementById("orgModal");
-  const orgGrid = document.getElementById("orgGrid");
-  const closeModalBtn = document.getElementById("closeModalBtn");
-  const selectCommonBtn = document.getElementById("selectCommonBtn");
-  const selectAllBtn = document.getElementById("selectAllBtn");
-  const clearAllBtn = document.getElementById("clearAllBtn");
-
-  // --- State -----------------------------------------------------------
-  let selectedOrganisms = [...commonSet];
-  let showScore = true;
-  let showNotes = false;
-  let sortKey = "Spectrum score";
-  let sortDir = "desc";
-
-  // --- Helpers ---------------------------------------------------------
-  function scoreToClass(v) {
-    if (v === 4) return "great";
-    if (v === 3) return "good";
-    if (v === 2) return "ok";
-    if (v === 1) return "bad";
-    return "na";
-  }
-
-  function calcSpectrumScore(drug) {
-    // average over selected organisms (ignoring N/A)
-    const vals = selectedOrganisms.map(o => drug.Activity[o] ?? 0).filter(v => v > 0);
-    if (!vals.length) return 0;
-    const avg = vals.reduce((a,b)=>a+b,0) / vals.length;
-    return Math.round(avg * 10) / 10;
-  }
-
-  function getVisibleData() {
-    const query = q.value.trim().toLowerCase();
-    const cat = categorySel.value;
-    const route = routeSel.value;
-    const minScore = scoreSel.value ? parseFloat(scoreSel.value) : null;
-
-    let rows = DRUGS.map(d => ({
-      ...d,
-      "Spectrum score": calcSpectrumScore(d)
-    }));
-
-    if (query) {
-      rows = rows.filter(d =>
-        d.Drug.toLowerCase().includes(query) ||
-        d.Class.toLowerCase().includes(query) ||
-        d.Category.toLowerCase().includes(query)
-      );
-    }
-    if (cat) rows = rows.filter(d => d.Category === cat);
-    if (route) rows = rows.filter(d => d.Route === route);
-
-    if (minScore !== null) rows = rows.filter(d => (d["Spectrum score"] || 0) >= minScore);
-
-    // sort
-    rows.sort((a,b) => {
-      const k = sortKey;
-      const dir = sortDir === "asc" ? 1 : -1;
-      let av = a[k] ?? "";
-      let bv = b[k] ?? "";
-      if (typeof av === "string") av = av.toLowerCase();
-      if (typeof bv === "string") bv = bv.toLowerCase();
-      if (av < bv) return -1*dir;
-      if (av > bv) return 1*dir;
-      return 0;
-    });
-
-    return rows;
-  }
-
-  function renderCategoryOptions() {
-    const cats = [...new Set(DRUGS.map(d => d.Category))].sort();
-    const current = categorySel.value;
-    categorySel.innerHTML = `<option value="">All categories</option>` + cats.map(c => `<option>${c}</option>`).join("");
-    categorySel.value = current;
-  }
-
-  function renderSelectedChips() {
-    selectedChips.innerHTML = "";
-    if (!selectedOrganisms.length) {
-      selectedChips.innerHTML = `<span class="note" style="color:var(--muted); font-size:12px;">None selected (table will show base columns only).</span>`;
-      return;
-    }
-    selectedOrganisms.forEach(o => {
-      const chip = document.createElement("div");
-      chip.className = "chip";
-      chip.innerHTML = `<span>${o}</span><button title="Remove">×</button>`;
-      chip.querySelector("button").addEventListener("click", () => {
-        selectedOrganisms = selectedOrganisms.filter(x => x !== o);
-        renderSelectedChips();
-        applyFilters();
-        // keep modal in sync if open
-        const cb = orgGrid.querySelector(`input[data-org="${cssEscape(o)}"]`);
-        if (cb) cb.checked = false;
-      });
-      selectedChips.appendChild(chip);
-    });
-  }
-
-  function cssEscape(s) {
-    return s.replace(/"/g,'\\"');
-  }
-
-  // Sticky columns helper
-  function applyStickyColumns() {
-    const table = document.getElementById("resultsTable");
-    const ths = Array.from(table.querySelectorAll("thead th"));
-    const tdsRows = Array.from(table.querySelectorAll("tbody tr"));
-
-    const stickyCount = BASE_COLS.length; // first columns always sticky
-    let left = 0;
-
-    for (let i = 0; i < stickyCount; i++) {
-      const th = ths[i];
-      if (!th) continue;
-      th.classList.add("sticky-left-th");
-      th.style.left = left + "px";
-
-      // add classes for width hints
-      if (i === 0) th.classList.add("col-cat");
-      if (i === 1) th.classList.add("col-drug");
-      if (i === 2) th.classList.add("col-class");
-      if (i === 3) th.classList.add("col-route");
-
-      const w = th.offsetWidth;
-      // body cells
-      tdsRows.forEach(tr => {
-        const td = tr.children[i];
-        if (td) {
-          td.classList.add("sticky-left-td");
-          td.style.left = left + "px";
-        }
-      });
-      left += w;
-    }
-  }
-
-  function makeColumnsResizable(cols) {
-    // Uses <colgroup> widths so resizing is reliable and survives re-render.
+  // Sticky left columns through Route (so Drug/Route stay visible during horizontal scroll)
+  function applyStickyColumns(){
     const table = document.getElementById("resultsTable");
     if (!table) return;
-
+    const stickyCount = BASE_COLS.length; // Category, Drug, Class, Route
     const ths = Array.from(table.querySelectorAll("thead th"));
-    const colEls = Array.from(colgroup.querySelectorAll("col"));
+    if (ths.length < stickyCount) return;
 
-    // If cols not passed, derive keys from header dataset/text.
-    const keys = (cols && cols.length) ? cols.slice() : ths.map(th => th.dataset.colKey || th.textContent || "");
+    // Clear previous sticky styles
+    ths.forEach(th => { th.classList.remove("sticky-left"); th.style.left = ""; });
+    Array.from(table.querySelectorAll("tbody td.sticky-left")).forEach(td => { td.classList.remove("sticky-left"); td.style.left = ""; });
 
-    ths.forEach((th, idx) => {
-      if (th.querySelector(".col-resizer")) return;
+    let left = 0;
+    for (let i = 0; i < stickyCount; i++) {
+      const th = ths[i];
+      th.classList.add("sticky-left");
+      th.style.left = left + "px";
 
-      const key = keys[idx] || th.dataset.colKey || th.textContent || "";
-      th.dataset.colKey = key;
+      const tds = table.querySelectorAll("tbody tr td:nth-child(" + (i+1) + ")");
+      tds.forEach(td => {
+        td.classList.add("sticky-left");
+        td.style.left = left + "px";
+      });
 
-      const initW = getColWidth(key, th.getBoundingClientRect().width);
-      if (colEls[idx]) colEls[idx].style.width = initW + "px";
-      th.style.width = initW + "px";
+      left += th.getBoundingClientRect().width;
+    }
+  }
+
+  
+// Persist column widths so resizing "sticks" across re-renders (and optional page reload).
+const COL_WIDTHS_STORAGE_KEY = "coast_colWidths_v1";
+let colWidths = {};
+try { colWidths = JSON.parse(localStorage.getItem(COL_WIDTHS_STORAGE_KEY) || "{}") || {}; } catch(e){ colWidths = {}; }
+function saveColWidths(){
+  try { localStorage.setItem(COL_WIDTHS_STORAGE_KEY, JSON.stringify(colWidths)); } catch(e){}
+}
+
+// Scroll sync for top horizontal scrollbar
+let __syncingScroll = false;
+function setupTopScrollbarSync(){
+  const wrap = document.getElementById("resultsWrap");
+  const top = document.getElementById("topHScroll");
+  if(!wrap || !top) return;
+
+  wrap.addEventListener("scroll", () => {
+    if(__syncingScroll) return;
+    __syncingScroll = true;
+    top.scrollLeft = wrap.scrollLeft;
+    __syncingScroll = false;
+  });
+
+  top.addEventListener("scroll", () => {
+    if(__syncingScroll) return;
+    __syncingScroll = true;
+    wrap.scrollLeft = top.scrollLeft;
+    __syncingScroll = false;
+  });
+}
+
+function updateTopScrollbar(){
+  const top = document.getElementById("topHScroll");
+  const inner = document.getElementById("topHScrollInner");
+  const wrap = document.getElementById("resultsWrap");
+  const table = document.getElementById("resultsTable");
+  if(!top || !inner || !wrap || !table) return;
+  inner.style.width = table.scrollWidth + "px";
+  const overflow = table.scrollWidth > wrap.clientWidth + 2;
+  top.style.display = overflow ? "block" : "none";
+  if(overflow){ top.scrollLeft = wrap.scrollLeft; }
+}
+
+// Guard against sorting click after a drag-resize
+let __isResizingColumn = false;
+
+// Ensure a colgroup exists and apply any saved widths.
+function ensureColgroup(cols){
+  const table = document.getElementById("resultsTable");
+  if(!table) return;
+  let cg = document.getElementById("resultsColgroup");
+  if(!cg){
+    cg = document.createElement("colgroup");
+    cg.id = "resultsColgroup";
+    table.insertBefore(cg, table.firstChild);
+  }
+  while(cg.children.length < cols.length){ cg.appendChild(document.createElement("col")); }
+  while(cg.children.length > cols.length){ cg.removeChild(cg.lastChild); }
+  cols.forEach((c, i) => {
+    const w = colWidths[c];
+    cg.children[i].style.width = w ? (w + "px") : "";
+  });
+}
+// Make table columns draggable to resize
+  function makeColumnsResizable(){
+    const table = document.getElementById("resultsTable");
+    if (!table) return;
+    const ths = Array.from(table.querySelectorAll("thead th"));
+    if (!ths.length) return;
+
+    // Remove existing resizers (table re-renders often)
+    ths.forEach(th => {
+      th.classList.add("resizable");
+      const old = th.querySelector(".col-resizer");
+      if (old) old.remove();
+      th.style.position = "sticky"; // keep sticky header behavior
+    });
+
+    function setColWidth(colIndex, px){
+      const w = Math.max(60, px); // minimum width
+      const th = ths[colIndex];
+      th.style.width = w + "px";
+      // Apply to body cells for consistent sizing
+      const tds = table.querySelectorAll("tbody tr td:nth-child(" + (colIndex+1) + ")");
+      tds.forEach(td => { td.style.width = w + "px"; });
+      // Recompute sticky offsets so frozen columns stay aligned
+      applyStickyColumns();
+    }
+
+    ths.forEach((th, i) => {
+      // Skip last column (no need for handle)
+      if (i === ths.length - 1) return;
 
       const resizer = document.createElement("div");
       resizer.className = "col-resizer";
+      let colName = "";
+      resizer.title = "Drag to resize column";
+      resizer.addEventListener("click", (e) => e.stopPropagation()); // don't trigger sort
       th.appendChild(resizer);
 
       let startX = 0;
       let startW = 0;
+      let dragging = false;
 
       const onMove = (e) => {
-        const dx = e.clientX - startX;
-        const newW = Math.max(60, Math.min(700, startW + dx));
-        colWidths[key] = newW;
-        if (colEls[idx]) colEls[idx].style.width = newW + "px";
-        th.style.width = newW + "px";
-        applyStickyColumns();
-        syncXScrollSize();
-        scheduleSaveColWidths();
+        if (!dragging) return;
+        const clientX = (e.touches && e.touches.length) ? e.touches[0].clientX : e.clientX;
+        const dx = clientX - startX;
+        setColWidth(i, startW + dx);
       };
 
       const onUp = () => {
+        if (!dragging) return;
+        dragging = false;
         document.removeEventListener("mousemove", onMove);
         document.removeEventListener("mouseup", onUp);
-        document.body.style.cursor = "";
+        document.removeEventListener("touchmove", onMove);
+        document.removeEventListener("touchend", onUp);
       };
 
-      resizer.addEventListener("mousedown", (e) => {
+      const onDown = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        startX = e.clientX;
+        __isResizingColumn = true;
+        dragging = true;
+        const clientX = (e.touches && e.touches.length) ? e.touches[0].clientX : e.clientX;
+        startX = clientX;
         startW = th.getBoundingClientRect().width;
-        document.body.style.cursor = "col-resize";
         document.addEventListener("mousemove", onMove);
         document.addEventListener("mouseup", onUp);
-      });
+        document.addEventListener("touchmove", onMove, {passive:false});
+        document.addEventListener("touchend", onUp);
+      };
+
+      resizer.addEventListener("mousedown", onDown);
+      resizer.addEventListener("touchstart", onDown, {passive:false});
+      resizer.addEventListener("click", (e)=>e.stopPropagation());
     });
   }
 
-  function renderTable() {
-    const rows = getVisibleData();
 
-    // decide which columns to show
-    const cols = BASE_COLS.concat(
-      (showScore ? ["Spectrum score"] : []),
-      (showNotes ? ["Notes"] : []),
-      selectedOrganisms
-    );
 
-    // col widths (via <colgroup>) so resize + sticky offsets are stable
-    colgroup.innerHTML = "";
-    cols.forEach((c) => {
-      const colEl = document.createElement("col");
-      colEl.dataset.colKey = c;
-      colEl.style.width = getColWidth(c) + "px";
-      colgroup.appendChild(colEl);
+  window.addEventListener("resize", () => {
+    // re-measure offsets after resize
+    clearTimeout(window.__coastStickyT);
+    window.__coastStickyT = setTimeout(applyStickyColumns, 80);
+  });
+
+  function score(val) {
+    const v = (val ?? "").toString().trim();
+    if (v === "+++") return 3;
+    if (v === "++") return 2;
+    if (v === "+") return 1;
+    if (v.toLowerCase() === "syn") return 2; // treat as "moderate-ish" for filtering
+    return 0; // X, --, blank
+  }
+
+  function activityClass(val) {
+    const v = (val ?? "").toString().trim();
+    if (!v) return "aN";
+    if (v === "+++") return "a3";
+    if (v === "++") return "a2";
+    if (v === "+") return "a1";
+    if (v.toLowerCase() === "syn") return "a2";
+    if (v === "--" || v === "X") return "a0";
+    return "aN";
+  }
+
+  function getSelectedValues(sel) {
+    return Array.from(sel.selectedOptions).map(o=>o.value);
+  }
+
+  function setSelectedValues(sel, values) {
+    const set = new Set(values);
+    Array.from(sel.options).forEach(o => o.selected = set.has(o.value));
+  }
+
+  function unionOrgs(categories) {
+    const set = new Set();
+    categories.forEach(c => (CAT_ORG[c] || []).forEach(o => set.add(o)));
+    return Array.from(set).sort((a,b)=>a.localeCompare(b));
+  }
+
+  // DOM
+  const categorySel = document.getElementById("category");
+  const routeSel = document.getElementById("route");
+  const orgSel = document.getElementById("organisms");
+  const drugPick = document.getElementById("drugPick");
+  const drugSearch = document.getElementById("drugSearch");
+  const showOnlySelectedOrgs = document.getElementById("showOnlySelectedOrgs");
+  const minActivity = document.getElementById("minActivity");
+  const resetBtn = document.getElementById("resetBtn");
+  const exportBtn = document.getElementById("exportBtn");
+  const theadRow = document.getElementById("theadRow");
+  const tbody = document.getElementById("tbody");
+  const countEl = document.getElementById("count");
+  const activeFiltersEl = document.getElementById("activeFilters");
+
+  let sortKey = "Drug";
+  let sortDir = "asc";
+
+  function renderOrganismOptions() {
+    const cats = getSelectedValues(categorySel);
+    const relevant = unionOrgs(cats);
+    const selectedNow = new Set(getSelectedValues(orgSel));
+    orgSel.innerHTML = "";
+    relevant.forEach(o => {
+      const opt = document.createElement("option");
+      opt.value = o;
+      opt.textContent = o;
+      opt.selected = selectedNow.has(o);
+      orgSel.appendChild(opt);
     });
+  }
+
+  function getOrgMatchMode() {
+    return document.getElementById("orgAll").checked ? "all" : "any";
+  }
+
+  function applyFilters() {
+    const cats = new Set(getSelectedValues(categorySel));
+    const routes = new Set(getSelectedValues(routeSel));
+    const q = drugSearch.value.trim().toLowerCase();
+    const pickedDrugs = new Set(getSelectedValues(drugPick));
+    const selectedOrgs = getSelectedValues(orgSel);
+    const orgMode = getOrgMatchMode();
+    const minScore = parseInt(minActivity.value, 10);
+
+    // filter rows
+    let rows = DATA.filter(r => cats.has(r.Category) && routes.has(r.Route));
+
+    if (q) {
+      rows = rows.filter(r => (r.Drug || "").toLowerCase().includes(q));
+    }
+
+    if (pickedDrugs.size > 0) {
+      rows = rows.filter(r => pickedDrugs.has(r.Drug));
+    }
+
+    if (selectedOrgs.length > 0) {
+      rows = rows.filter(r => {
+        const hits = selectedOrgs.map(o => score(r[o]));
+        if (orgMode === "all") return hits.every(s => s >= minScore);
+        return hits.some(s => s >= minScore);
+      });
+    }
+
+    // sort
+    rows.sort((a,b) => {
+      const av = (a[sortKey] ?? "").toString();
+      const bv = (b[sortKey] ?? "").toString();
+      const cmp = av.localeCompare(bv, undefined, {numeric:true, sensitivity:"base"});
+      return sortDir === "asc" ? cmp : -cmp;
+    });
+
+    const pickedList = Array.from(pickedDrugs);
+    renderTable(rows, selectedOrgs, cats);
+    renderActiveFilterPills(cats, routes, q, pickedList, selectedOrgs, orgMode, minScore, rows.length);
+  }
+
+  function displayLabelForMinScore(s) {
+    if (s === 3) return "+++ only";
+    if (s === 2) return ">= ++";
+    return ">= +";
+  }
+
+  function renderActiveFilterPills(cats, routes, q, pickedDrugs, orgs, orgMode, minScore, n) {
+    activeFiltersEl.innerHTML = "";
+    function pill(text) {
+      const d = document.createElement("span");
+      d.className = "pill";
+      d.textContent = text;
+      activeFiltersEl.appendChild(d);
+    }
+    pill("Rows: " + n);
+    pill("Category: " + Array.from(cats).join(", "));
+    pill("Route: " + Array.from(routes).join(", "));
+    if (q) pill('Drug contains: "' + q + '"');
+    if (pickedDrugs && pickedDrugs.length) pill("Drug pick: " + pickedDrugs.join(", "));
+    if (orgs.length) pill("Organisms: " + orgs.join(", ") + " (" + orgMode + ", " + displayLabelForMinScore(minScore) + ")");
+    countEl.textContent = n + " drug rows shown";
+  }
+
+  function chosenOrganismColumns(selectedOrgs, cats) {
+    const relevant = unionOrgs(Array.from(cats));
+    if (showOnlySelectedOrgs.checked) {
+      return selectedOrgs.length ? selectedOrgs : relevant;
+    }
+    return relevant;
+  }
+
+  function renderTable(rows, selectedOrgs, cats) {
+    const orgCols = chosenOrganismColumns(selectedOrgs, cats);
 
     // header
     theadRow.innerHTML = "";
-    cols.forEach((c) => {
+    const cols = BASE_COLS.concat(
+      OPTIONAL_COLS.filter(c => rows.some(r => ((r[c] ?? "").toString().trim() !== ""))),
+      orgCols
+    );
+
+    cols.forEach(c => {
       const th = document.createElement("th");
       th.textContent = c;
-      th.dataset.colKey = c;
-      th.style.width = getColWidth(c) + "px";
       th.title = "Click to sort";
-      if (c === sortKey) th.textContent = `${c} ${sortDir === "asc" ? "▲" : "▼"}`;
-
       th.addEventListener("click", () => {
-        if (sortKey === c) {
-          sortDir = (sortDir === "asc") ? "desc" : "asc";
-        } else {
-          sortKey = c;
-          sortDir = (c === "Spectrum score") ? "desc" : "asc";
-        }
-        renderTable();
+        if (sortKey === c) sortDir = (sortDir === "asc") ? "desc" : "asc";
+        else { sortKey = c; sortDir = "asc"; }
+        applyFilters();
       });
-
       theadRow.appendChild(th);
     });
 
     // body
     tbody.innerHTML = "";
-    rows.forEach(d => {
+    rows.forEach(r => {
       const tr = document.createElement("tr");
       cols.forEach(c => {
         const td = document.createElement("td");
-        if (c === "Spectrum score") {
-          const v = d["Spectrum score"] || 0;
-          const cls = scoreToClass(Math.round(v));
-          td.innerHTML = `<div class="score ${cls}">${v ? v.toFixed(1) : "—"}</div>`;
-        } else if (c === "Notes") {
-          td.textContent = d.Notes || "";
-          td.style.maxWidth = "360px";
-        } else if (BASE_COLS.includes(c)) {
-          td.textContent = d[c] || "";
+        const v = (r[c] ?? "").toString().trim();
+
+        if (orgCols.includes(c)) {
+          td.className = "activity " + activityClass(v);
+          td.textContent = v || "";
         } else {
-          const v = d.Activity[c] ?? 0;
-          const cls = scoreToClass(v);
-          const label = v === 0 ? "—" : (v === 4 ? "Strong" : v === 3 ? "Good" : v === 2 ? "Limited" : "Poor");
-          td.innerHTML = `<div class="score ${cls}">${label}</div>`;
+          td.className = "meta";
+          td.textContent = v;
         }
         tr.appendChild(td);
       });
       tbody.appendChild(tr);
     });
-
-    countNote.textContent = `Showing ${rows.length} agent${rows.length === 1 ? "" : "s"}`;
-
-    // re-apply sticky positioning after render (needs layout)
-    setTimeout(() => { applyStickyColumns(); makeColumnsResizable(cols); syncXScrollSize(); }, 0);
+    // After rendering, keep the left columns visible during horizontal scroll
+    setTimeout(() => { applyStickyColumns(); makeColumnsResizable(); }, 0);
   }
 
-  function applyFilters() {
-    renderSelectedChips();
-    renderTable();
-  }
-
-  // --- Organism modal --------------------------------------------------
-  function renderOrganismOptions() {
-    orgGrid.innerHTML = "";
-    ALL_ORGANISMS.forEach(o => {
-      const wrap = document.createElement("label");
-      wrap.className = "check";
-      const cb = document.createElement("input");
-      cb.type = "checkbox";
-      cb.checked = selectedOrganisms.includes(o);
-      cb.dataset.org = o;
-
-      const label = document.createElement("div");
-      label.className = "label";
-      label.innerHTML = `<strong>${o}</strong><span>${ORGANISM_META[o]}</span>`;
-
-      cb.addEventListener("change", () => {
-        if (cb.checked) {
-          if (!selectedOrganisms.includes(o)) selectedOrganisms.push(o);
-        } else {
-          selectedOrganisms = selectedOrganisms.filter(x => x !== o);
-        }
+  function exportCSV() {
+    const table = document.getElementById("resultsTable");
+    const rows = Array.from(table.querySelectorAll("tr"));
+    const csv = rows.map(row => {
+      const cells = Array.from(row.children).map(cell => {
+        const text = (cell.textContent || "").replace(/\s+/g, " ").trim();
+        if (/[",\n]/.test(text)) return '"' + text.replace(/"/g,'""') + '"';
+        return text;
       });
+      return cells.join(",");
+    }).join("\n");
 
-      wrap.appendChild(cb);
-      wrap.appendChild(label);
-      orgGrid.appendChild(wrap);
-    });
+    const blob = new Blob([csv], {type: "text/csv;charset=utf-8;"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "CoAST_filtered.csv";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
   }
 
-  function openModal() {
+  function resetAll() {
+    setSelectedValues(categorySel, Array.from(categorySel.options).map(o=>o.value));
+    setSelectedValues(routeSel, Array.from(routeSel.options).map(o=>o.value));
+    drugSearch.value = "";
+    setSelectedValues(drugPick, []);
+    document.getElementById("orgAny").checked = true;
+    minActivity.value = "1";
+    showOnlySelectedOrgs.checked = true;
     renderOrganismOptions();
-    orgModal.classList.add("open");
-  }
-  function closeModal() {
-    // commit selection, keep stable order based on ALL_ORGANISMS
-    const selected = Array.from(orgGrid.querySelectorAll("input[type=checkbox]"))
-      .filter(cb => cb.checked)
-      .map(cb => cb.dataset.org);
-    selectedOrganisms = ALL_ORGANISMS.filter(o => selected.includes(o));
-    orgModal.classList.remove("open");
+    setSelectedValues(orgSel, []);
     applyFilters();
   }
 
-  // --- Events ----------------------------------------------------------
-  [q, categorySel, routeSel, scoreSel].forEach(el => el.addEventListener("input", applyFilters));
-  categorySel.addEventListener("change", applyFilters);
+  categorySel.addEventListener("change", () => { renderOrganismOptions(); applyFilters(); });
   routeSel.addEventListener("change", applyFilters);
-  scoreSel.addEventListener("change", applyFilters);
-
-  toggleScore.addEventListener("change", () => { showScore = toggleScore.checked; applyFilters(); });
-  toggleNotes.addEventListener("change", () => { showNotes = toggleNotes.checked; applyFilters(); });
-
-  organismBtn.addEventListener("click", openModal);
-  closeModalBtn.addEventListener("click", closeModal);
-  orgModal.addEventListener("click", (e) => { if (e.target === orgModal) closeModal(); });
-
-  selectCommonBtn.addEventListener("click", () => {
-    Array.from(orgGrid.querySelectorAll("input[type=checkbox]")).forEach(cb => {
-      cb.checked = commonSet.includes(cb.dataset.org);
-    });
-  });
-  selectAllBtn.addEventListener("click", () => {
-    Array.from(orgGrid.querySelectorAll("input[type=checkbox]")).forEach(cb => cb.checked = true);
-  });
-  clearAllBtn.addEventListener("click", () => {
-    Array.from(orgGrid.querySelectorAll("input[type=checkbox]")).forEach(cb => cb.checked = false);
+  orgSel.addEventListener("change", applyFilters);
+  showOnlySelectedOrgs.addEventListener("change", applyFilters);
+  drugSearch.addEventListener("input", applyFilters);
+  drugPick.addEventListener("change", applyFilters);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "/" && document.activeElement !== drugSearch) {
+      e.preventDefault();
+      drugSearch.focus();
+    }
+    if (e.key === "Escape") {
+      if (document.activeElement === drugSearch) drugSearch.blur();
+      if (drugSearch.value) {
+        drugSearch.value = "";
+    setSelectedValues(drugPick, []);
+        applyFilters();
+      }
+    }
   });
 
-  resetBtn.addEventListener("click", () => {
-    q.value = "";
-    categorySel.value = "";
-    routeSel.value = "";
-    scoreSel.value = "";
-    selectedOrganisms = [...commonSet];
-    showScore = true;
-    showNotes = false;
-    toggleScore.checked = true;
-    toggleNotes.checked = false;
-    sortKey = "Spectrum score";
-    sortDir = "desc";
-    applyFilters();
-  });
+  document.getElementById("orgAny").addEventListener("change", applyFilters);
+  document.getElementById("orgAll").addEventListener("change", applyFilters);
+  minActivity.addEventListener("change", applyFilters);
+
+  resetBtn.addEventListener("click", resetAll);
+  exportBtn.addEventListener("click", exportCSV);
 
   // init
-  initXScrollSync();
-  renderCategoryOptions();
-  renderSelectedChips();
+  setupTopScrollbarSync();
+  renderOrganismOptions();
   applyFilters();
-})();
+  setTimeout(updateTopScrollbar, 0);
 </script>
 </body>
 </html>
