@@ -139,11 +139,12 @@ body {
   }
   .swatch b { color: var(--text); }
   .tablewrap {
-    overflow: auto;
     position: relative;
     border-radius: 14px;
     border: 1px solid var(--border);
     background: var(--panel);
+  overflow: auto;
+  scrollbar-gutter: stable both-edges;
   }
 
 /* Top horizontal scrollbar (synced with main table) */
@@ -553,7 +554,19 @@ function saveColWidths(){
 
 // Scroll sync for top horizontal scrollbar
 let __syncingScroll = false;
-function setupTopScrollbarSync(){
+
+  // Keep the main results table in its own vertical scroll area so sticky headers can work.
+  function sizeResultsWrap(){
+    const wrap = document.getElementById("resultsWrap");
+    if(!wrap) return;
+    const rect = wrap.getBoundingClientRect();
+    const bottomPad = 16;          // breathing room above viewport bottom
+    const minHeight = 260;         // avoid tiny scroll panes
+    const avail = window.innerHeight - rect.top - bottomPad;
+    wrap.style.maxHeight = Math.max(minHeight, avail) + "px";
+  }
+
+  function setupTopScrollbarSync(){
   const wrap = document.getElementById("resultsWrap");
   const top = document.getElementById("topHScroll");
   if(!wrap || !top) return;
@@ -944,9 +957,11 @@ function ensureColgroup(cols){
 
   // init
   setupTopScrollbarSync();
+  sizeResultsWrap();
+  window.addEventListener("resize", () => { sizeResultsWrap(); updateTopScrollbar(); });
   renderOrganismOptions();
   applyFilters();
-  setTimeout(updateTopScrollbar, 0);
+  setTimeout(() => { sizeResultsWrap(); updateTopScrollbar(); }, 0);
 </script>
 </body>
 </html>
